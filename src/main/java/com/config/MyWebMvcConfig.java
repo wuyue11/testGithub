@@ -12,7 +12,7 @@ import java.sql.Connection;
 
 @Configuration
 @AutoConfigureAfter(WebMvcAutoConfiguration.class)
-public class MyWebMvcConfig extends WebMvcAutoConfiguration{
+public class MyWebMvcConfig {
     @Bean
     public Connector getConnector(){
         Connector connector=new Connector();
