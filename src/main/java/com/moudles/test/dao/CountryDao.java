@@ -9,6 +9,8 @@ import java.util.List;
 @Mapper
 @Repository
 public interface CountryDao {
+
+
     @Select("select * from m_country where country_id = #{countryId} ")
     @Results(id = "countryResults", value = {
             @Result(column = "country_id", property = "countryId"),
@@ -24,5 +26,11 @@ public interface CountryDao {
 
 
     @Select("select * from  m_country where country_id = #{countryId}")
+    @Results(id = "countryResults2", value = {
+            @Result(column = "country_id", property = "countryId"),
+            @Result(column = "country_id", property = "cities",
+                    javaType = List.class,
+                    many = @Many(select =
+                            "com.sfac.javaSpringBoot.modules.test.dao.CityDao.getCitiesByCountryId2"))})
     Country getCountryByCountryId2(int countryId);
 }
